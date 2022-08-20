@@ -1,12 +1,13 @@
-import express from "express";
+import 'reflect-metadata';
+import dotenv from 'dotenv';
+import { mongoDataSource } from './infrastructure/db.config';
+import Server from './server';
 
-const app = express();
-const port = 3_000;
+dotenv.config();
 
-app.get("/", (request, response) => {
-  response.send("Hello World");
-});
+const start = async () => {
+  await mongoDataSource.initialize();
+  new Server().start();
+}
 
-app.listen(port, () => {
-  console.log(`Server listening on port: ${port}`);
-});
+start();

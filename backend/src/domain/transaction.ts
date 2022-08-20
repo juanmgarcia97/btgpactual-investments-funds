@@ -1,13 +1,16 @@
 import Client from './client';
-import { TransactionType } from './types';
+import { InvestmentFunds } from './types';
 
 export default class Transaction {
+  private client: Client
   constructor(
     private id: string,
-    private type: TransactionType,
+    private type: string,
+    private fund: string,
     private date: Date,
-    private client: Client
-  ) {}
+  ) {
+    this.client = new Client();
+  }
 
   get getId() {
     return this.id;
@@ -21,8 +24,16 @@ export default class Transaction {
     return this.type;
   }
 
-  set setType(value: TransactionType) {
+  set setType(value: string) {
     this.type = value;
+  }
+
+  get getFund() {
+    return this.fund;
+  }
+
+  set setFund(value: string) {
+    this.fund = value;
   }
 
   get getDate() {

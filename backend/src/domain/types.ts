@@ -1,8 +1,9 @@
-export type InvestmentFund = {
-  id: number
-  name: string
-  minimumAmount: InvestmentFundAmount
-  category: FundCategory
+export enum InvestmentFunds {
+  FPV_BTG_PACTUAL_RECAUDADORA = 'FPV_BTG_PACTUAL_RECAUDADORA',
+  FPV_BTG_PACTUAL_ECOPETROL = 'FPV_BTG_PACTUAL_ECOPETROL',
+  DEUDAPRIVADA = 'DEUDAPRIVADA',
+  FDO_ACCIONES = 'FDO_ACCIONES',
+  FPV_BTG_PACTUAL_DINAMICA = 'FPV_BTG_PACTUAL_DINAMICA'
 }
 
 export enum FundCategory {
@@ -21,4 +22,10 @@ export enum InvestmentFundAmount {
 export enum TransactionType {
   OPENING = 'Apertura',
   CLOSING = 'Cancelación'
+}
+
+export const DI = {
+  TransactionRepository: Symbol.for('TransactionRepository'),
+  TransactionService: Symbol.for('TransactionService'),
+  TransactionController: Symbol.for('TransactionController')
 }
