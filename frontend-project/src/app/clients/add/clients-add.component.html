@@ -1,0 +1,20 @@
+<div class="form-container">
+  <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+    <h2>Nuevo cliente</h2>
+    <div class="form-input">
+      <mat-form-field appearance="fill">
+        <mat-label for="id">Cédula</mat-label>
+        <input id="id" type="text" formControlName="id" matInput />
+      </mat-form-field>
+    </div>
+
+    <div class="form-input">
+      <mat-form-field appearance="fill">
+        <mat-label for="name">Nombre</mat-label>
+        <input id="name" type="text" formControlName="name" matInput />
+      </mat-form-field>
+    </div>
+
+    <button type="submit">Add</button>
+  </form>
+</div>

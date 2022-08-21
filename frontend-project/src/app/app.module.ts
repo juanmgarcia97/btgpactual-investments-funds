@@ -10,6 +10,7 @@ import { TransactionsModule } from './transactions/transactions.module';
 import { ErrorIntercept } from './error.interceptor';
 import { GlobalErrorHandler } from './utils/global-error.handler';
 import { ChartModule } from './chart/chart.module';
+import { ClientsModule } from './clients/clients.module';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { ChartModule } from './chart/chart.module';
     FundsModule,
     TransactionsModule,
     ChartModule,
+    ClientsModule
   ],
   providers: [
     {

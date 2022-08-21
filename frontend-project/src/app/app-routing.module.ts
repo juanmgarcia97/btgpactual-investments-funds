@@ -3,6 +3,7 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { FundsComponent } from './funds/funds-list/funds.component';
 import { TransactionsListComponent } from './transactions/transactions-list/transactions-list.component';
 import { ChartComponent } from './chart/chart.component';
+import { ClientsAddComponent } from './clients/add/clients-add.component';
 
 const routes: Routes = [
   {
@@ -16,6 +17,10 @@ const routes: Routes = [
   {
     path: 'chart',
     component: ChartComponent
+  },
+  {
+    path: 'clients',
+    component: ClientsAddComponent
   }
 ];
 
