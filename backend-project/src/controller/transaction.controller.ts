@@ -1,4 +1,4 @@
-import { Request, Response as ExpressResponse, NextFunction } from 'express';
+import { Request, Response as ExpressResponse } from 'express';
 import { inject } from 'inversify';
 import {
   BaseHttpController,
@@ -34,8 +34,7 @@ export class TransactionController extends BaseHttpController {
   @httpPost('/')
   private async create(
     @request() req: Request,
-    @response() res: ExpressResponse,
-    @next() next: NextFunction
+    @response() res: ExpressResponse
   ) {
     await this.transactionService.createTransaction(req.body);
     Response.created(res, req.body, 'Transacción creada satisfactoriamente.');
