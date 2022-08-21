@@ -33,7 +33,8 @@ export default class TransactionServiceImpl implements TransactionService {
   private validateTransaction(transaction: Transaction) {
     const client = transaction.getClient;
     const investmentFund = transaction.getFund;
-    client.validateFund(investmentFund);
+    const transactionType = transaction.getType;
+    client.validateFund(investmentFund, transactionType);
   }
 
   private validateBalance(transaction: Transaction) {

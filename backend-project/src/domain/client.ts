@@ -1,42 +1,12 @@
-import { InvestmentFunds, InvestmentFundAmount } from './types';
+import { InvestmentFunds, InvestmentFundAmount, TransactionType, InvestmentFund, funds } from './types';
 import NotEnoughBalance from './exceptions/notEnoughBalance';
 import InvalidFund from './exceptions/invalidFund';
 import FundAlreadyInvested from './exceptions/fundAlreadyInvested';
+import InvalidFundClosing from './exceptions/invalidFundClosing';
+
 export default class Client {
   private balance: number;
-  private readonly funds = [
-    {
-      id: 1,
-      name: 'FPV_BTG_PACTUAL_RECAUDADORA',
-      minAmount: 75000,
-      category: 'FPV',
-    },
-    {
-      id: 2,
-      name: 'FPV_BTG_PACTUAL_ECOPETROL',
-      minAmount: 125000,
-      category: 'FPV',
-    },
-    {
-      id: 3,
-      name: 'DEUDAPRIVADA',
-      minAmount: 50000,
-      category: 'FPV',
-    },
-    {
-      id: 4,
-      name: 'FDO-ACCIONES',
-      minAmount: 250000,
-      category: 'FPV',
-    },
-    {
-      id: 5,
-      name: 'FPV_BTG_PACTUAL_DINAMICA',
-      minAmount: 100000,
-      category: 'FPV',
-    }
-  ];
-  private investments: any[];
+  private investments: InvestmentFund[];
   constructor(private id: string, private name?: string) {
     name ? (this.name = name) : (this.name = 'anonimo');
     this.balance = 500000;
@@ -71,15 +41,16 @@ export default class Client {
     return this.investments;
   }
 
-  set setInvestments(value: any[]) {
+  set setInvestments(value: InvestmentFund[]) {
     this.investments = value;
   }
 
-  validateFund(fund: string) {
+  validateFund(fund: string, type: string) {
     const investment = this.investments.find(
       (element) => element.name === fund
     );
-    if (investment) throw new FundAlreadyInvested();
+    if (investment && type === TransactionType.OPENING) throw new FundAlreadyInvested();
+    if(!investment && type === TransactionType.CLOSING) throw new InvalidFundClosing();
   }
 
   subscribe(fund: string) {
@@ -112,7 +83,8 @@ export default class Client {
     default:
       throw new InvalidFund();
     }
-    this.investments.push(this.funds.find((element) => element.name === fund));
+    const invest = funds.find((element) => element.name === fund);
+    invest ? this.investments.push(invest) : 0;
   }
 
   unsubscribe(fund: string) {
@@ -135,7 +107,7 @@ export default class Client {
     default:
       throw new InvalidFund();
     }
-    const elementIndex = this.funds.findIndex(
+    const elementIndex = funds.findIndex(
       (element) => element.name === fund
     );
     this.investments.splice(elementIndex, 1);
