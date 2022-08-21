@@ -1,15 +1,13 @@
 import Client from './client';
-import { InvestmentFunds } from './types';
 
 export default class Transaction {
-  private client: Client
   constructor(
     private id: string,
     private type: string,
     private fund: string,
     private date: Date,
+    private client: Client
   ) {
-    this.client = new Client();
   }
 
   get getId() {
