@@ -18,4 +18,3 @@ export type Transaction = {
   fund: string;
   client: string;
 };
-//
