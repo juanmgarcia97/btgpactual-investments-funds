@@ -17,13 +17,13 @@ export const funds: InvestmentFund[] = [
     id: 3,
     name: 'DEUDAPRIVADA',
     minAmount: 50000,
-    category: 'FPV',
+    category: 'FIC',
   },
   {
     id: 4,
     name: 'FDO-ACCIONES',
     minAmount: 250000,
-    category: 'FPV',
+    category: 'FIC',
   },
   {
     id: 5,

@@ -3,7 +3,7 @@ import dotenv from 'dotenv';
 import { mongoDataSource } from './infrastructure/db.config';
 import Server from './server';
 
-dotenv.config({ path: __dirname + '/.env' });
+dotenv.config();
 
 const start = async () => {
   await mongoDataSource.initialize();

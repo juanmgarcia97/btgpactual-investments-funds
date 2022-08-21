@@ -1,14 +1,14 @@
 body {
   margin: 0;
-  // font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
 .main-container {
-  background: #E6F0FF;
+  background: #e6f0ff;
   position: relative;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 25px 50px 0 rgba(0, 0, 0, 0.1);
   display: grid;
-  grid-template-areas: 'header header header' '. main .';
+  grid-template-areas: "header header header" ". main .";
 }
 
 app-header {
@@ -17,7 +17,7 @@ app-header {
 
 button {
   background-color: white;
-  border: 0.5px solid limegreen;
+  border: 0.5px solid #21285d;
   cursor: pointer;
   box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
   border-radius: 5px;

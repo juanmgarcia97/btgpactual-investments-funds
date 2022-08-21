@@ -1,0 +1,55 @@
+table {
+  width: 100%;
+  margin: 1rem 2rem;
+  justify-content: center;
+}
+
+.mat-column-fundName {
+  font-weight: 600;
+  padding: 24px;
+  text-align: center;
+}
+
+.mat-column-fundName,
+.mat-column-fundMinAmount,
+.mat-column-fundCategory {
+  padding: 24px;
+  text-align: center;
+}
+
+// .viable {
+//   color: green;
+// }
+
+// .not-viable {
+//   color: red;
+// }
+
+// .viable,
+// .not-viable {
+//   font-size: x-large;
+// }
+
+.subscription-button,
+.unsubscription-button {
+  font-size: x-large;
+  text-align: center;
+  border: 0.5px solid #21285d;
+  cursor: pointer;
+  background-color: white;
+  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+}
+
+.subscription-button {
+  color: limegreen;
+  & :hover {
+    color: green;
+  }
+}
+.unsubscription-button {
+  color: lightcoral;
+  & :hover {
+    color: red;
+  }
+}

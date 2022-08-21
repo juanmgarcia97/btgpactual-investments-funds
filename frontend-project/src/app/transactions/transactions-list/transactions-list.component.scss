@@ -1,0 +1,46 @@
+table {
+  width: 100%;
+  margin: 1rem 2rem;
+  justify-content: center;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.mat-column-fund {
+  font-weight: 600;
+  padding: 24px;
+  text-align: center;
+}
+
+.mat-column-id,
+.mat-column-type,
+.mat-column-date,
+.mat-column-fund,
+.mat-column-client {
+  padding: 24px;
+  text-align: center;
+}
+
+button {
+  background-color: white;
+  border: 0.5px solid #21285d;
+  cursor: pointer;
+  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  font-size: larger;
+}
+
+.delete-button {
+  font-size: x-large;
+  text-align: center;
+  color: limegreen;
+  border: 0;
+  background-color: white;
+  cursor: pointer;
+  & :hover {
+    color: green;
+  }
+}
