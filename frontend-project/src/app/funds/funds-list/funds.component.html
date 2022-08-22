@@ -1,5 +1,8 @@
 <div class="container">
-  <h1>Fondos de inversión</h1>
+  <div class="header">
+    <h1>Fondos de inversión</h1>
+    <p>Nombre cliente: {{ client.name }} - Balance: {{ client.balance }}</p>
+  </div>
   <table mat-table [dataSource]="data" class="mat-elevation-z8">
     <ng-container matColumnDef="fundName">
       <th mat-header-cell *matHeaderCellDef>Nombre</th>

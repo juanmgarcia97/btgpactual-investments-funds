@@ -4,11 +4,15 @@ import { FundsComponent } from './funds/funds-list/funds.component';
 import { TransactionsListComponent } from './transactions/transactions-list/transactions-list.component';
 import { ChartComponent } from './chart/chart.component';
 import { ClientsAddComponent } from './clients/add/clients-add.component';
+import { ClientsResolver } from './clients/clients.resolver';
 
 const routes: Routes = [
   {
     path: 'investment-funds',
-    component: FundsComponent
+    component: FundsComponent,
+    resolve: {
+      client: ClientsResolver
+    }
   },
   {
     path: 'history',

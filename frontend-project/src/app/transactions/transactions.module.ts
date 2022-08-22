@@ -1,5 +1,5 @@
-import { NgModule } from "@angular/core";
-import { TransactionsListComponent } from "./transactions-list/transactions-list.component";
+import { NgModule } from '@angular/core';
+import { TransactionsListComponent } from './transactions-list/transactions-list.component';
 import { CommonModule } from '@angular/common';
 import { TransactionsRoutingModule } from './transactions-routing.module';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -7,8 +7,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatTableModule } from '@angular/material/table';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { MatTableExporterModule } from "mat-table-exporter";
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { MatTableExporterModule } from 'mat-table-exporter';
 
 const materialImports = [
   MatFormFieldModule,
@@ -16,7 +16,7 @@ const materialImports = [
   MatTableModule,
   MatButtonModule,
   MatSnackBarModule,
-  MatTableExporterModule
+  MatTableExporterModule,
 ];
 
 @NgModule({
@@ -25,8 +25,8 @@ const materialImports = [
     CommonModule,
     TransactionsRoutingModule,
     FontAwesomeModule,
-    ...materialImports
+    ...materialImports,
   ],
-  exports: [TransactionsRoutingModule]
+  exports: [TransactionsRoutingModule],
 })
-export class TransactionsModule { }
+export class TransactionsModule {}

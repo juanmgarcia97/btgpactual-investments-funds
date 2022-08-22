@@ -4,6 +4,11 @@ table {
   justify-content: center;
 }
 
+.header {
+  display: flex;
+  justify-content: space-between;
+}
+
 .mat-column-fundName {
   font-weight: 600;
   padding: 24px;

@@ -19,8 +19,7 @@ export class ChartComponent implements AfterViewInit {
 
   constructor(private clientService: ClientsService) {
     this.clientService.getClientById(localStorage.getItem('client') ?? '1143873318').subscribe(data => {
-      const response = data as Response;
-      const client = response.data as Client;
+      const client = data as Client;
       client.investments?.forEach((fund, index) =>
         this.pieData[index] = fund.minAmount
       ) ?? [];
