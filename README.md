@@ -23,4 +23,4 @@ El proyecto corre por defecto en el puerto `3000`, si requiere cambiar este puer
 El proyecto fue desarrollado en Angular en su versión [14](https://angular.io/docs) y [Angular Material](https://material.angular.io/guides) es recomendable descargar el CLI de Angular usando el comando `npm install -g @angular/cli`.
 
 - ### Ejecución
-El proyecto corre por defecto en el puerto `8080`. Para instalar las dependencias se debe usar el comando `npm install` en la consola, ubicándose dentro de la carpeta `frontend-project`. Al finalizar la instalación resta usar el comando `npm run serve` para correr el proyecto y abrir el navegador para usarlo, escribiendo en la barra de búsqueda `localhost:4200`.
+El proyecto corre por defecto en el puerto `4200`. Para instalar las dependencias se debe usar el comando `npm install` en la consola, ubicándose dentro de la carpeta `frontend-project`. Al finalizar la instalación resta usar el comando `npm run serve` para correr el proyecto y abrir el navegador para usarlo, escribiendo en la barra de búsqueda `localhost:4200`.
