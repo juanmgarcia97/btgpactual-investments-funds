@@ -14,6 +14,8 @@ export class TransactionsListComponent implements OnInit {
         'type',
         'date',
         'fund',
+        'minAmount',
+        'amount',
         'client',
     ];
     data: Transaction[] = [];
@@ -24,6 +26,7 @@ export class TransactionsListComponent implements OnInit {
     ngOnInit(): void {
         this.route.data.subscribe((data) => {
             this.data = data['transactions'];
+            console.log(data['transactions']);
         })
     }
 

@@ -1,0 +1,12 @@
+<h1 mat-dialog-title>Invertir</h1>
+<div mat-dialog-content>
+  <p>¿Cuánto quieres invertir en {{data.fund}}?</p>
+  <mat-form-field appearance="fill" >
+    <mat-label>Monto</mat-label>
+    <input matInput type="number" [(ngModel)]="data.amount">
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-raised-button (click)="onNoClick()">Cancelar</button>
+  <button mat-raised-button [mat-dialog-close]="data.amount" cdkFocusInitial>Invertir</button>
+</div>

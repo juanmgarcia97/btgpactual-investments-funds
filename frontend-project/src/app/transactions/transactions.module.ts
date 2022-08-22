@@ -9,6 +9,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { MatTableExporterModule } from 'mat-table-exporter';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 const materialImports = [
   MatFormFieldModule,
@@ -17,6 +18,7 @@ const materialImports = [
   MatButtonModule,
   MatSnackBarModule,
   MatTableExporterModule,
+  MatPaginatorModule
 ];
 
 @NgModule({

@@ -1,7 +1,11 @@
-<div class="container">
+<div style="text-align: -webkit-center;">
   <div class="header">
     <h1>Fondos de inversión</h1>
-    <p>Nombre cliente: {{ client.name }} - Balance: {{ client.balance }}</p>
+    <div class="client-info">
+      <p><strong>Nombre cliente:</strong> {{ client.name }}</p>
+      <p><strong>Balance:</strong> {{ client.balance }}</p>
+      <p><strong>Total invertido:</strong> {{ client.balance ? 500000 - client.balance : client.balance }}</p>
+    </div>
   </div>
   <table mat-table [dataSource]="data" class="mat-elevation-z8">
     <ng-container matColumnDef="fundName">
@@ -22,16 +26,10 @@
     <ng-container matColumnDef="actions">
       <th mat-header-cell *matHeaderCellDef>Acción</th>
       <td mat-cell *matCellDef="let element">
-        <button
-          class="subscription-button"
-          (click)="subscription(element.name)"
-        >
+        <button class="subscription-button" (click)="openDialogSubscription(element)">
           <fa-icon [icon]="subscribeIcon"></fa-icon>
         </button>
-        <button
-          class="unsubscription-button"
-          (click)="unsubscription(element.name)"
-        >
+        <button class="unsubscription-button" (click)="unsubscription(element)">
           <fa-icon [icon]="unsubscribeIcon"></fa-icon>
         </button>
       </td>
@@ -39,5 +37,6 @@
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+
   </table>
 </div>

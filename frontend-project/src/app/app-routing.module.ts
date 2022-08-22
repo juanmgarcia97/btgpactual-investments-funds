@@ -25,6 +25,11 @@ const routes: Routes = [
   {
     path: 'clients',
     component: ClientsAddComponent
+  },
+  {
+    path: '',
+    redirectTo: 'investment-funds',
+    pathMatch: 'full'
   }
 ];
 

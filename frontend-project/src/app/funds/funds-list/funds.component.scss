@@ -1,12 +1,22 @@
 table {
-  width: 100%;
-  margin: 1rem 2rem;
-  justify-content: center;
+  min-width: -webkit-fill-available;
 }
 
 .header {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
+  margin: 1rem;
+  align-items: center;
+}
+
+.client-info {
+  display: flex;
+  justify-content: space-around;
+  border: 0.5px solid #21285dd3;
+  color: #21285d;
+  border-radius: 5px;
+  padding: 1rem;
+  gap: 0.5rem;
 }
 
 .mat-column-fundName {
@@ -17,23 +27,12 @@ table {
 
 .mat-column-fundName,
 .mat-column-fundMinAmount,
-.mat-column-fundCategory {
+.mat-column-fundCategory,
+.mat-column-actions {
   padding: 24px;
   text-align: center;
+  color: #21285d;
 }
-
-// .viable {
-//   color: green;
-// }
-
-// .not-viable {
-//   color: red;
-// }
-
-// .viable,
-// .not-viable {
-//   font-size: x-large;
-// }
 
 .subscription-button,
 .unsubscription-button {
@@ -56,5 +55,17 @@ table {
   color: lightcoral;
   & :hover {
     color: red;
+  }
+}
+
+::ng-deep .dialog {
+  .mat-dialog-container {
+    border: 0.5px solid #21285d;
+  }
+  .mat-dialog-content {
+    text-align: -webkit-center;
+  }
+  .mat-dialog-actions {
+    justify-content: flex-end;
   }
 }
