@@ -6,6 +6,7 @@ import { TransactionRepository } from '../repository/transaction.repository';
 import TransactionDTO from '../controller/dto/transaction.dto';
 import TransactionMapper from '../infrastructure/persistence/mapper/transaction.mapper';
 import { ClientRepository } from '../repository/client.repository';
+import InvalidTransaction from '../domain/exceptions/invalidTransaction';
 
 @injectable()
 export default class TransactionServiceImpl implements TransactionService {
@@ -21,6 +22,15 @@ export default class TransactionServiceImpl implements TransactionService {
   }
 
   async createTransaction(transactionDTO: TransactionDTO): Promise<void> {
+    if (
+      !transactionDTO.amount &&
+      transactionDTO.type === TransactionType.OPENING
+    )
+      throw new InvalidTransaction();
+    if (!transactionDTO.client) throw new InvalidTransaction();
+    if (!transactionDTO.date) throw new InvalidTransaction();
+    if (!transactionDTO.fund) throw new InvalidTransaction();
+    if (!transactionDTO.type) throw new InvalidTransaction();
     const transaction = TransactionMapper.fromDTOtoDomain(transactionDTO);
     const client = await this.clientRepository.findById(transactionDTO.client);
     transaction.setClient = client;
@@ -32,16 +42,13 @@ export default class TransactionServiceImpl implements TransactionService {
 
   private validateTransaction(transaction: Transaction) {
     const client = transaction.getClient;
-    const investmentFund = transaction.getFund;
-    const transactionType = transaction.getType;
-    client.validateExistentFund(investmentFund, transactionType);
+    client.validateExistentFund(transaction);
   }
 
   private validateBalance(transaction: Transaction) {
     const client = transaction.getClient;
-    const investmentFund = transaction.getFund;
     transaction.getType == TransactionType.OPENING
-      ? client.subscribe(investmentFund, transaction.getAmount)
-      : client.unsubscribe(investmentFund, transaction.getAmount);
+      ? client.subscribe(transaction)
+      : client.unsubscribe(transaction);
   }
 }

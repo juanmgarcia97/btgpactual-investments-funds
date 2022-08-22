@@ -40,6 +40,11 @@ export type InvestmentFund = {
   category: string;
 };
 
+export type FundInvested = {
+  name: string
+  amount: number
+}
+
 export const funds: InvestmentFund[] = [
   {
     id: 1,
