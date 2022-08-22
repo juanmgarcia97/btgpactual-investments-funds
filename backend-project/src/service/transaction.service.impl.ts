@@ -1,6 +1,6 @@
 import { inject, injectable } from 'inversify';
 import Transaction from '../domain/transaction';
-import { DI, TransactionType } from '../domain/types';
+import { DI, InvestmentFund, TransactionType } from '../domain/types';
 import { TransactionService } from './transaction.service';
 import { TransactionRepository } from '../repository/transaction.repository';
 import TransactionDTO from '../controller/dto/transaction.dto';
@@ -34,14 +34,14 @@ export default class TransactionServiceImpl implements TransactionService {
     const client = transaction.getClient;
     const investmentFund = transaction.getFund;
     const transactionType = transaction.getType;
-    client.validateFund(investmentFund, transactionType);
+    client.validateExistentFund(investmentFund, transactionType);
   }
 
   private validateBalance(transaction: Transaction) {
     const client = transaction.getClient;
     const investmentFund = transaction.getFund;
     transaction.getType == TransactionType.OPENING
-      ? client.subscribe(investmentFund)
-      : client.unsubscribe(investmentFund);
+      ? client.subscribe(investmentFund, transaction.getAmount)
+      : client.unsubscribe(investmentFund, transaction.getAmount);
   }
 }

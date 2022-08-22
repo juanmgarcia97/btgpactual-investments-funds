@@ -1,8 +1,13 @@
-import { InvestmentFunds, InvestmentFundAmount, TransactionType, InvestmentFund, funds } from './types';
+import {
+  InvestmentFundAmount,
+  TransactionType,
+  InvestmentFund,
+  funds,
+} from './types';
 import NotEnoughBalance from './exceptions/notEnoughBalance';
-import InvalidFund from './exceptions/invalidFund';
 import FundAlreadyInvested from './exceptions/fundAlreadyInvested';
 import InvalidFundClosing from './exceptions/invalidFundClosing';
+import InvalidMinAmount from './exceptions/invalidMinAmount';
 
 export default class Client {
   private balance: number;
@@ -45,71 +50,34 @@ export default class Client {
     this.investments = value;
   }
 
-  validateFund(fund: string, type: string) {
-    const investment = this.investments.find(
-      (element) => element.name === fund
-    );
-    if (investment && type === TransactionType.OPENING) throw new FundAlreadyInvested();
-    if(!investment && type === TransactionType.CLOSING) throw new InvalidFundClosing();
+  validateExistentFund(fund: InvestmentFund, type: string) {
+    const investment = this.investments.includes(fund);
+    if (investment && type === TransactionType.OPENING)
+      throw new FundAlreadyInvested();
+    if (!investment && type === TransactionType.CLOSING)
+      throw new InvalidFundClosing();
   }
 
-  subscribe(fund: string) {
-    switch (fund) {
-    case InvestmentFunds.FPV_BTG_PACTUAL_RECAUDADORA:
-      if (this.balance < InvestmentFundAmount.FPV_BTG_PACTUAL_RECAUDADORA)
-        throw new NotEnoughBalance(fund);
-      this.balance -= InvestmentFundAmount.FPV_BTG_PACTUAL_RECAUDADORA;
-      break;
-    case InvestmentFunds.FPV_BTG_PACTUAL_ECOPETROL:
-      if (this.balance < InvestmentFundAmount.FPV_BTG_PACTUAL_ECOPETROL)
-        throw new NotEnoughBalance(fund);
-      this.balance -= InvestmentFundAmount.FPV_BTG_PACTUAL_ECOPETROL;
-      break;
-    case InvestmentFunds.FPV_BTG_PACTUAL_DINAMICA:
-      if (this.balance < InvestmentFundAmount.FPV_BTG_PACTUAL_DINAMICA)
-        throw new NotEnoughBalance(fund);
-      this.balance -= InvestmentFundAmount.FPV_BTG_PACTUAL_DINAMICA;
-      break;
-    case InvestmentFunds.FDO_ACCIONES:
-      if (this.balance < InvestmentFundAmount.FDO_ACCIONES)
-        throw new NotEnoughBalance(fund);
-      this.balance -= InvestmentFundAmount.FDO_ACCIONES;
-      break;
-    case InvestmentFunds.DEUDAPRIVADA:
-      if (this.balance < InvestmentFundAmount.DEUDAPRIVADA)
-        throw new NotEnoughBalance(fund);
-      this.balance -= InvestmentFundAmount.DEUDAPRIVADA;
-      break;
-    default:
-      throw new InvalidFund();
-    }
-    const invest = funds.find((element) => element.name === fund);
-    invest ? this.investments.push(invest) : 0;
+  validateMinimumAmount(fund: InvestmentFund, amount: number) {
+    if (amount < fund.minAmount)
+      throw new InvalidMinAmount(fund.name, amount);
   }
 
-  unsubscribe(fund: string) {
-    switch (fund) {
-    case InvestmentFunds.FPV_BTG_PACTUAL_RECAUDADORA:
-      this.balance += InvestmentFundAmount.FPV_BTG_PACTUAL_RECAUDADORA;
-      break;
-    case InvestmentFunds.FPV_BTG_PACTUAL_ECOPETROL:
-      this.balance += InvestmentFundAmount.FPV_BTG_PACTUAL_ECOPETROL;
-      break;
-    case InvestmentFunds.FPV_BTG_PACTUAL_DINAMICA:
-      this.balance += InvestmentFundAmount.FPV_BTG_PACTUAL_DINAMICA;
-      break;
-    case InvestmentFunds.FDO_ACCIONES:
-      this.balance += InvestmentFundAmount.FDO_ACCIONES;
-      break;
-    case InvestmentFunds.DEUDAPRIVADA:
-      this.balance += InvestmentFundAmount.DEUDAPRIVADA;
-      break;
-    default:
-      throw new InvalidFund();
-    }
-    const elementIndex = funds.findIndex(
-      (element) => element.name === fund
-    );
+  validateBalance(fund: string, amount: number, multiplier: number) {
+    if (this.balance < amount) throw new NotEnoughBalance(fund);
+    this.balance += multiplier * amount;
+  }
+
+  subscribe(fund: InvestmentFund, amount: number) {
+    this.validateBalance(fund.name, amount, -1);
+    this.validateMinimumAmount(fund, amount);
+    this.investments.push(fund);
+  }
+  
+  unsubscribe(fund: InvestmentFund, amount: number) {
+    this.validateBalance(fund.name, amount, 1);
+    this.validateMinimumAmount(fund, amount);
+    const elementIndex = funds.findIndex((element) => element === fund);
     this.investments.splice(elementIndex, 1);
   }
 }

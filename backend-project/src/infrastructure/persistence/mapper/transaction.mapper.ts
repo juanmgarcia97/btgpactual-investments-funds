@@ -10,6 +10,7 @@ export default class TransactionMapper {
       entity.type,
       entity.fund,
       new Date(entity.date),
+      entity.amount,
       entity.client
     );
   }
@@ -20,6 +21,7 @@ export default class TransactionMapper {
       dto.type,
       dto.fund,
       new Date(dto.date),
+      dto.amount,
       new Client(dto.client)
     );
   }
@@ -30,6 +32,7 @@ export default class TransactionMapper {
       type: domain.getType,
       fund: domain.getFund,
       date: domain.getDate.toUTCString(),
+      amount: domain.getAmount,
       client: domain.getClient,
     });
   }
@@ -48,6 +51,7 @@ export default class TransactionMapper {
       type: domain.getType,
       fund: domain.getFund,
       date: domain.getDate,
+      amount: domain.getAmount,
       client: domain.getClient,
     };
   }

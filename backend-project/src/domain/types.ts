@@ -11,13 +11,13 @@ export enum FundCategory {
   FIC = 'Fondo de Inversión Colectiva',
 }
 
-export enum InvestmentFundAmount {
-  FPV_BTG_PACTUAL_RECAUDADORA = 75000,
-  FPV_BTG_PACTUAL_ECOPETROL = 125000,
-  DEUDAPRIVADA = 50000,
-  FDO_ACCIONES = 250000,
-  FPV_BTG_PACTUAL_DINAMICA = 100000,
-}
+export const InvestmentFundAmount: { [key: string]: number } = {
+  FPV_BTG_PACTUAL_RECAUDADORA: 75000,
+  FPV_BTG_PACTUAL_ECOPETROL: 125000,
+  DEUDAPRIVADA: 50000,
+  FDO_ACCIONES: 250000,
+  FPV_BTG_PACTUAL_DINAMICA: 100000,
+};
 
 export enum TransactionType {
   OPENING = 'Apertura',
@@ -70,5 +70,5 @@ export const funds: InvestmentFund[] = [
     name: 'FPV_BTG_PACTUAL_DINAMICA',
     minAmount: 100000,
     category: 'FPV',
-  }
+  },
 ];

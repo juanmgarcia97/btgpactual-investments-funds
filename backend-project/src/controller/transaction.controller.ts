@@ -5,7 +5,6 @@ import {
   controller,
   httpGet,
   httpPost,
-  next,
   request,
   response,
 } from 'inversify-express-utils';
